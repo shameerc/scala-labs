@@ -16,8 +16,7 @@ import sys._
 object BasicFunctionsExercise {
 
   def plusOne(x: Int): Int = {
-    //implement this using a partial function
-    error("fix me")
+    plus(1,x)
   }
 
   def plus(x: Int, y: Int): Int = {
@@ -25,6 +24,11 @@ object BasicFunctionsExercise {
   }
 
   def using[A <: {def close(): Unit}, B](closable: A)(f: A => B): B = {
-    error("fix me")
+    try {
+      f(closable)
+    }
+    finally{
+      closable.close()
+    }
   }
 }

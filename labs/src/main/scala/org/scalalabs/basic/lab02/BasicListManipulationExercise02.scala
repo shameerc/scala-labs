@@ -12,7 +12,7 @@ object BasicListManipulationExercise02 {
    * As usual, various ways exist: pattern matching, folding, ...
    */
   def maxElementInList(l: List[Int]): Int = {
-    error("fix me")
+    l.max
   }
 
   /**
@@ -20,7 +20,11 @@ object BasicListManipulationExercise02 {
    * of the two list
    */
   def sumOfTwo(l1: List[Int], l2: List[Int]): List[Int] = {
-    error("fix me")
+    (l1.length,l2.length) match{
+      case (0 , _) => l2
+      case (_ , 0) => l1
+      case (_, _) => (l1,l2).zipped.map( _ + _ )
+    }
   }
 
   /**
@@ -28,7 +32,7 @@ object BasicListManipulationExercise02 {
    * method above
    */
   def sumOfMany(l: List[Int]*): List[Int] = {
-    error("fix me")
+    l.toList.foldLeft(List[Int]())((m,n) => sumOfTwo(m,n))
   }
 
   /**
@@ -37,30 +41,10 @@ object BasicListManipulationExercise02 {
    * may be able to achieve the same functionality as implemented below
    * in a one-liner.
    */
-  def separateTheMenFromTheBoys(persons: List[Person]): List[List[String]] = {
-    var boys: ListBuffer[Person] = new ListBuffer[Person]()
-    var men: ListBuffer[Person] = new ListBuffer[Person]()
-    var validBoyNames: ListBuffer[String] = new ListBuffer[String]()
-    var validMenNames: ListBuffer[String] = new ListBuffer[String]()
-
-    for (person <- persons) {
-        if (person.age < 18) {
-          boys += person
-        } else {
-          men += person
-        }
-    }
-
-    var sortedBoys = boys.toList.sortBy(_.age)
-    var sortedMen = men.toList.sortBy(_.age)
-
-    for (boy <- sortedBoys) {
-      validBoyNames += boy.firstName
-    }
-    for (man <- sortedMen) {
-      validMenNames += man.firstName
-    }
-    List(validBoyNames.toList, validMenNames.toList)
+  def separateTheMenFromTheBoys(persons: List[Person]): List[List[String]]  = {
+    val partitioned = persons.sortBy(_.age).partition( a => a.age < 18) 
+    val boysNames = partitioned._1.sortBy(_.age).map(_.firstName)
+    val menNames  = partitioned._2.sortBy(_.age).map(_.firstName)
+    List(boysNames,menNames)
   }
-
 }

@@ -16,7 +16,7 @@ object BasicListManipulationExercise01 {
    */
   def firstElementInList[T](l: List[T]): T = {
     //buildin
-    null.asInstanceOf[T]
+    l.head
   }
 
   /**
@@ -25,7 +25,7 @@ object BasicListManipulationExercise01 {
    * https://www.scala-lang.org/docu/files/api/scala/List.html#foldLeft(B)
    */
   def sumOfList(l: List[Int]): Int = {
-    error("fix me")
+    l.sum
   }
 
   /**
@@ -37,7 +37,7 @@ object BasicListManipulationExercise01 {
    *  - ... etc
    */
   def lastElementInList[T](l: List[T]): T = {
-    error("fix me")
+    l.last
   }
 
    /**
@@ -49,7 +49,7 @@ object BasicListManipulationExercise01 {
    *  - ... etc
    */
   def nthElementInList[T](n: Int, l: List[T]): T = {
-    error("fix me")
+    l.apply(n)
   }
 
   /**
@@ -61,7 +61,7 @@ object BasicListManipulationExercise01 {
    *  - ... etc 
    */
   def concatLists[T](l1: List[T], l2: List[T]): List[T] = {
-    error("fix me")
+    l1 ::: l2
   }
 
   /**
@@ -73,7 +73,7 @@ object BasicListManipulationExercise01 {
    * 
    */
   def sortList[T <% Ordered[T]](list: List[T]): List[T] = {
-    error("fix me")
+    list.sortWith((a,b) => a < b)
   }
 
   /**
@@ -81,7 +81,7 @@ object BasicListManipulationExercise01 {
    * Again, easy to implement using built-in functionality, but also possible to implement in your own free-style way.
    */
   def elementExists[T](l: List[T], e: T): Boolean = {
-    error("fix me")
+    l.contains(e)
   }
 
   /**
@@ -90,7 +90,7 @@ object BasicListManipulationExercise01 {
    * pattern match or some other method.
    */
   def oddElements(iList: List[Int]): List[Int] = {
-    error("fix me")
+    iList.filter(a => a % 2 !=0 )
   }
 
   /**
@@ -101,7 +101,7 @@ object BasicListManipulationExercise01 {
    * Implement it whatever way suites you best. Hint: it can be done in a neat way using recursion. 
    */
   def tails[T](l: List[T]): List[List[T]] = {
-    error("fix me")
+    l.tails.toList
   }
 }
 
